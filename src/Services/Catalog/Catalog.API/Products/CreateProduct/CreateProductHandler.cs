@@ -1,7 +1,7 @@
 ﻿namespace Catalog.API.Products.CreateProduct
 {
     public record CreateProductCommand
-    (string Name, string Description, string ImageUrl, decimal Price, List<string> Categories)
+    (string Name, string Description, string ImageUrl, decimal Price, List<string> Category)
     : ICommand<CreateProductResult>;
 
     public record CreateProductResult(Guid Id);
@@ -12,7 +12,7 @@
         public async Task<CreateProductResult> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var product = Product.Create(request.Name, request.Description, request.ImageUrl
-                , request.Price, request.Categories);
+                , request.Price, request.Category);
 
             session.Store(product);
             await session.SaveChangesAsync(cancellationToken);

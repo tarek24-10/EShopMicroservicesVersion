@@ -7,9 +7,9 @@
         public string Description { get; private set; } = default!;
         public string ImageUrl { get; private set; } = default!; 
         public decimal Price { get; private set; }
-        public List<string> Categories { get; private set; } = new();
+        public List<string> Category { get; private set; } = new();
 
-        public static Product Create(string name, string description, string imageUrl, decimal price, List<string> categories)
+        public static Product Create(string name, string description, string imageUrl, decimal price, List<string> category)
         {
             return new Product
             {
@@ -18,7 +18,7 @@
                 Description = description,
                 ImageUrl = imageUrl,
                 Price = price,
-                Categories = categories
+                Category = category
             };
         }
     }

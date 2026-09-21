@@ -1,7 +1,7 @@
 ﻿namespace Catalog.API.Products.CreateProduct
 {
     public record CreateProductRequest
-        (string Name, string Description, string ImageUrl, List<string> Categories, decimal Price);
+        (string Name, string Description, string ImageUrl, List<string> Category, decimal Price);
 
     public record CreateProductResponse(Guid Id);
     public class CreateProductEndpoint() : ICarterModule
