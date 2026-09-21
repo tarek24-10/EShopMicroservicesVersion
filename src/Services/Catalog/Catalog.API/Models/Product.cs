@@ -2,12 +2,12 @@
 {
     public class Product
     {
-        public Guid Id { get; private set; }
-        public string Name { get; private set; } = default!;
-        public string Description { get; private set; } = default!;
-        public string ImageUrl { get; private set; } = default!; 
-        public decimal Price { get; private set; }
-        public List<string> Category { get; private set; } = new();
+        public Guid Id { get; set; }
+        public string Name { get; set; } = default!;
+        public string Description { get; set; } = default!;
+        public string ImageUrl { get; set; } = default!; 
+        public decimal Price { get; set; }
+        public List<string> Category { get; set; } = new();
 
         public static Product Create(string name, string description, string imageUrl, decimal price, List<string> category)
         {
