@@ -1,5 +1,3 @@
-using BuldingBlocks.Exceptions;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -26,6 +24,11 @@ builder.Services.AddMarten(options =>
 {
     options.Connection(builder.Configuration.GetConnectionString("Database") ?? throw new InternalServerException("Database connection string is null"));
 }).UseLightweightSessions();
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.InitializeMartenWith<CatalogInitialData>();
+}
 
 builder.Services.AddValidatorsFromAssembly(currentAssembly);
 
