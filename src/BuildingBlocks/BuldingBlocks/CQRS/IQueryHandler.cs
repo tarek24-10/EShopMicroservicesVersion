@@ -2,7 +2,7 @@
 
 namespace BuldingBlocks.CQRS
 {
-    public interface IQyeryHandler<in TQuery, TResponce> : IRequestHandler<TQuery, TResponce>
+    public interface IQueryHandler<in TQuery, TResponce> : IRequestHandler<TQuery, TResponce>
         where TQuery : IQuery<TResponce>
         where TResponce : notnull
     {
