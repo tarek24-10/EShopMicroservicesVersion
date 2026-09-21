@@ -12,7 +12,7 @@
             var productFromDb = await session.LoadAsync<Product>(query.ProductId, cancellationToken);
             if (productFromDb == null)
             {
-                throw new ProductNotFoundException();
+                throw new ProductNotFoundException(query.ProductId);
             }
             return new GetProductByIdResult(productFromDb);
         }

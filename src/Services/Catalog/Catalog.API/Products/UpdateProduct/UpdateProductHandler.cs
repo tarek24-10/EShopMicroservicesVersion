@@ -29,7 +29,7 @@
 
             if (productfromDb == null)
             {
-                throw new ProductNotFoundException();
+                throw new ProductNotFoundException(productfromDb.Id);
             }
 
             productfromDb.Update(command.Name, command.Description, command.ImageUrl
