@@ -10,6 +10,8 @@ global using BuldingBlocks.Behaviours;
 global using BuldingBlocks.Exceptions.Handler;
 global using BuldingBlocks.Exceptions;
 global using Catalog.API.Data;
+global using Marten.Pagination;
+
 
 
 
