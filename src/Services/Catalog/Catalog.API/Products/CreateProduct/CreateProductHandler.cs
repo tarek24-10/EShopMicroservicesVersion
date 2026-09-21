@@ -18,11 +18,14 @@
         }
     }
 
-    internal class CreateProductHandler(IDocumentSession session)
+    internal class CreateProductHandler(IDocumentSession session, ILogger<CreateProductHandler> logger)
             : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
         public async Task<CreateProductResult> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
+            logger.LogInformation("Creating product with name: {Name}, description: {Description}, imageUrl: {ImageUrl}, price: {Price}, category: {Category}",
+                request.Name, request.Description, request.ImageUrl, request.Price, string.Join(", ", request.Category));
+
             var product = Product.Create(request.Name, request.Description, request.ImageUrl
                 , request.Price, request.Category);
 

@@ -1,13 +1,19 @@
+using BuldingBlocks.Behaviours;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddMediatR(configuration =>
-configuration.RegisterServicesFromAssembly(typeof(Program).Assembly));
+var currentAssembly = typeof(Program).Assembly;
+
+builder.Services.AddMediatR(configuration => { 
+configuration.RegisterServicesFromAssembly(currentAssembly);
+configuration.AddOpenBehavior(typeof(ValidationBeahviour<,>));
+});
 
 builder.Services.AddCarter(null, configurator =>
 {
-    var moduleTypes = typeof(Program).Assembly
+    var moduleTypes = currentAssembly
         .GetTypes()
         .Where(t => typeof(ICarterModule).IsAssignableFrom(t) && !t.IsAbstract)
         .ToArray();
@@ -20,7 +26,7 @@ builder.Services.AddMarten(options =>
     options.Connection(builder.Configuration.GetConnectionString("Database"));
 }).UseLightweightSessions();
 
-builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
+builder.Services.AddValidatorsFromAssembly(currentAssembly);
 
 
 var app = builder.Build();
