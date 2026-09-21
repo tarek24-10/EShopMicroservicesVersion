@@ -15,6 +15,11 @@ builder.Services.AddCarter(null, configurator =>
     configurator.WithModules(moduleTypes);
 });
 
+builder.Services.AddMarten(options =>
+{
+    options.Connection(builder.Configuration.GetConnectionString("Database"));
+}).UseLightweightSessions();
+
 
 var app = builder.Build();
 
