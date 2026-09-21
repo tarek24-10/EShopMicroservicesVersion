@@ -32,7 +32,7 @@ namespace BuldingBlocks.Exceptions.Handler
                 exception.Message
                 ),
 
-                ValidationException => (
+                FluentValidation.ValidationException => (
                 exception.GetType().Name,
                 StatusCodes.Status400BadRequest,
                 exception.Message
@@ -55,9 +55,9 @@ namespace BuldingBlocks.Exceptions.Handler
 
             problemDetails.Extensions.Add("traceId", context.TraceIdentifier);
 
-            if(exception is ValidationException validationException)
+            if(exception is FluentValidation.ValidationException validationException)
             {
-                problemDetails.Extensions.Add("validationErrors", validationException.ValidationResult);
+                problemDetails.Extensions.Add("validationErrors", validationException.Errors);
             }
 
             await context.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
