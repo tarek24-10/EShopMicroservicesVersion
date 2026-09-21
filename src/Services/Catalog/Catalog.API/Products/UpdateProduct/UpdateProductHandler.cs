@@ -1,16 +1,16 @@
 ﻿namespace Catalog.API.Products.UpdateProduct
 {
-    public record UpdateProductCommand(Guid ProductId, string Name, string Description, string ImageUrl
+    public record UpdateProductCommand(Guid Id, string Name, string Description, string ImageUrl
         , decimal Price, List<string> Category) : ICommand<UpdateProductResult>;
     public record UpdateProductResult(bool IsSuccess);
-    public class UpdateProductHandler(IDocumentSession session, ILogger<UpdateProductHandler> logger) 
+    internal class UpdateProductHandler(IDocumentSession session, ILogger<UpdateProductHandler> logger) 
         : ICommandHandler<UpdateProductCommand, UpdateProductResult>
     {
         public async Task<UpdateProductResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
         {
-            logger.LogInformation("Updating product with ID: {ProductId}", command.ProductId);
+            logger.LogInformation("Updating product with ID: {ProductId}", command.Id);
 
-            var productfromDb = await session.LoadAsync<Product>(command.ProductId);
+            var productfromDb = await session.LoadAsync<Product>(command.Id, cancellationToken);
 
             if (productfromDb == null)
             {
