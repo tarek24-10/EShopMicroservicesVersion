@@ -9,7 +9,7 @@
         List<string> Category
     );
 
-    public record UpdateProductResponce(bool IsSuccess);
+    public record UpdateProductResponse(bool IsSuccess);
     public class UpdateProductEndpoint : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)
@@ -20,12 +20,12 @@
                     , request.ImageUrl, request.Price, request.Category);
 
                 var result = await sender.Send(command);
-                var response = result.Adapt<UpdateProductResponce>();
+                var response = result.Adapt<UpdateProductResponse>();
 
                 return Results.Ok(response);
             })
             .WithName("UpdateProduct")
-            .Produces<UpdateProductResponce>(StatusCodes.Status200OK)
+            .Produces<UpdateProductResponse>(StatusCodes.Status200OK)
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Update a product")
             .WithDescription("Update a product with the specified details.");

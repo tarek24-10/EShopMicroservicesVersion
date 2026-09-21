@@ -11,13 +11,11 @@
         }
     }
 
-    internal class DeleteProductHandler(IDocumentSession session, ILogger<DeleteProductHandler> logger) 
+    internal class DeleteProductHandler(IDocumentSession session) 
         : ICommandHandler<DeleteProductCommand, DeleteProductResult>
     {
         public async Task<DeleteProductResult> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
         {
-            logger.LogInformation("Deleting product with ID: {ProductId}", command.productId);
-
             session.Delete<Product>(command.productId);
             await session.SaveChangesAsync(cancellationToken);
 

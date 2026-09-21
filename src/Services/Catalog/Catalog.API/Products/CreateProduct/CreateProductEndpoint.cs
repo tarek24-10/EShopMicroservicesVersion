@@ -12,7 +12,7 @@
             {
                 var command = request.Adapt<CreateProductCommand>();
                 var result = await sender.Send(command);
-                var responce = result.Adapt<CreateProductResponse>();
+                var response = result.Adapt<CreateProductResponse>();
                 return Results.Created($"/products/{result.Id}", result.Id);
             })
             .WithName("CreateProduct")

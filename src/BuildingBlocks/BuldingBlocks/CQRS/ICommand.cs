@@ -2,7 +2,7 @@
 
 namespace BuldingBlocks.CQRS
 {
-    public interface ICommand<out TResponce> : IRequest<TResponce>
+    public interface ICommand<out TResponse> : IRequest<TResponse>
     {
     }
 

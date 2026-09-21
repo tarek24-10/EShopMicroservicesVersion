@@ -2,13 +2,11 @@
 {
     public record GetProductByIdQuery(Guid ProductId) : IQuery<GetProductByIdResult>;
     public record GetProductByIdResult(Product Product);
-    internal class GetProductByIdHandler(IDocumentSession session, ILogger<GetProductByIdHandler> logger) 
+    internal class GetProductByIdHandler(IDocumentSession session) 
         : IQueryHandler<GetProductByIdQuery, GetProductByIdResult>
     {
         public async Task<GetProductByIdResult> Handle(GetProductByIdQuery query, CancellationToken cancellationToken)
         {
-            logger.LogInformation("Handling GetProductByIdQuery for ProductId: {ProductId}", query.ProductId);
-
             var productFromDb = await session.LoadAsync<Product>(query.ProductId, cancellationToken);
             if (productFromDb == null)
             {
