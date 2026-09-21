@@ -21,5 +21,14 @@
                 Category = category
             };
         }
+
+        public void Update(string name, string description, string imageUrl, decimal price, List<string> category)
+        {
+            Name = name;
+            Description = description;
+            ImageUrl = imageUrl;
+            Price = price;
+            Category = category;
+        }
     }
 }
