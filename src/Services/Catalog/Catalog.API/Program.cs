@@ -1,3 +1,5 @@
+using BuldingBlocks.Exceptions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +9,7 @@ var currentAssembly = typeof(Program).Assembly;
 builder.Services.AddMediatR(configuration => { 
 configuration.RegisterServicesFromAssembly(currentAssembly);
 configuration.AddOpenBehavior(typeof(ValidationBeahviour<,>));
+configuration.AddOpenBehavior(typeof(LoggingBehaviour<,>));
 });
 
 builder.Services.AddCarter(null, configurator =>
@@ -21,7 +24,7 @@ builder.Services.AddCarter(null, configurator =>
 
 builder.Services.AddMarten(options =>
 {
-    options.Connection(builder.Configuration.GetConnectionString("Database"));
+    options.Connection(builder.Configuration.GetConnectionString("Database") ?? throw new InternalServerException("Database connection string is null"));
 }).UseLightweightSessions();
 
 builder.Services.AddValidatorsFromAssembly(currentAssembly);
