@@ -20,7 +20,7 @@
                     , request.ImageUrl, request.Price, request.Category);
 
                 var result = await sender.Send(command);
-                var response = new UpdateProductResponce(result.IsSuccess);
+                var response = result.Adapt<UpdateProductResponce>();
 
                 return Results.Ok(response);
             })
