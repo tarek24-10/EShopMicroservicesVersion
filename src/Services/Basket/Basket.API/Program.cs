@@ -1,3 +1,5 @@
+using BuldingBlocks.Exceptions.Handler;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,6 +21,8 @@ builder.Services.AddMediatR(configuration =>
     configuration.AddOpenBehavior(typeof(LoggingBehaviour<,>));
 });
 
+builder.Services.AddValidatorsFromAssembly(currentAssembly);
+
 builder.Services.AddMarten(options =>
 {
     options.Connection(builder.Configuration.GetConnectionString("Database")!);
@@ -27,10 +31,14 @@ builder.Services.AddMarten(options =>
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
 app.MapCarter();
+
+app.UseExceptionHandler(options => { });
 
 app.Run();
