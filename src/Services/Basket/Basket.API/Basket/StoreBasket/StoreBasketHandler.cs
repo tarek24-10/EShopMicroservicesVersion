@@ -28,7 +28,7 @@ namespace Basket.API.Basket.StoreBasket
             foreach (var item in shoppingCart.Items)
             {
                 var coupon = await discountProto.GetDiscountAsync(new GetDiscountRequest { ProductName = item.ProductName }, cancellationToken: cancellationToken);
-                item.Price -= (Decimal)coupon.Amount * item.Price;
+                item.Price -= (Decimal)coupon.Amount / 100 * item.Price;
             }
             return shoppingCart;
         }
