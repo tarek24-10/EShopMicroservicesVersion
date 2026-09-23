@@ -32,14 +32,38 @@ namespace Discount.Grpc.Services
             return couponModel;
         }
 
-        public override Task<CouponModel> CreateDiscount(CreateDiscountRequest request, ServerCallContext context)
+        public override async Task<CouponModel> CreateDiscount(CreateDiscountRequest request, ServerCallContext context)
         {
-            return base.CreateDiscount(request, context);
+            var coupon = request.Coupon.Adapt<Coupon>();
+
+            if(coupon is null)
+            {
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid coupon data"));
+            }
+
+            discountContext.Coupons.Add(coupon);
+            await discountContext.SaveChangesAsync();
+            logger.LogInformation("Discount created for ProductName: {ProductName}, Amount: {Amount}", coupon.ProductName, coupon.Amount);
+
+            var couponModel = coupon.Adapt<CouponModel>();
+            return couponModel;
         }
 
-        public override Task<CouponModel> UpdateDiscount(UpdateDiscountRequest request, ServerCallContext context)
+        public override async Task<CouponModel> UpdateDiscount(UpdateDiscountRequest request, ServerCallContext context)
         {
-            return base.UpdateDiscount(request, context);
+            var coupon = request.Coupon.Adapt<Coupon>();
+
+            if (coupon is null)
+            {
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid coupon data"));
+            }
+
+            discountContext.Coupons.Update(coupon);
+            await discountContext.SaveChangesAsync();
+            logger.LogInformation("Discount updated for ProductName: {ProductName}, Amount: {Amount}", coupon.ProductName, coupon.Amount);
+
+            var couponModel = coupon.Adapt<CouponModel>();
+            return couponModel;
         }
 
         public override Task<DeleteDiscountResponse> DeleteDiscount(DeleteDiscountRequest request, ServerCallContext context)

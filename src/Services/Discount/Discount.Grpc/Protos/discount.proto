@@ -27,7 +27,7 @@ message CreateDiscountRequest {
 }
 
 message UpdateDiscountRequest {
-  CouponModel coupon = 1;
+  CouponModel Coupon = 1;
 }
 
 message DeleteDiscountRequest {
