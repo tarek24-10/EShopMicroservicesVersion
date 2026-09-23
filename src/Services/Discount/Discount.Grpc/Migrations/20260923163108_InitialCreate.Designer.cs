@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Discount.Grpc.Migrations
 {
     [DbContext(typeof(DiscountContext))]
-    [Migration("20260923162500_ChangePropertyDataType")]
-    partial class ChangePropertyDataType
+    [Migration("20260923163108_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,14 +44,14 @@ namespace Discount.Grpc.Migrations
                         new
                         {
                             Id = 1,
-                            Amount = 150.0,
+                            Amount = 10.0,
                             Description = "IPhone Discount",
                             ProductName = "IPhone X"
                         },
                         new
                         {
                             Id = 2,
-                            Amount = 100.0,
+                            Amount = 20.0,
                             Description = "Samsung Discount",
                             ProductName = "Samsung 10"
                         });

@@ -20,7 +20,7 @@ namespace Discount.Grpc.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     ProductName = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: false),
-                    Amount = table.Column<int>(type: "INTEGER", nullable: false)
+                    Amount = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,8 +32,8 @@ namespace Discount.Grpc.Migrations
                 columns: new[] { "Id", "Amount", "Description", "ProductName" },
                 values: new object[,]
                 {
-                    { 1, 150, "IPhone Discount", "IPhone X" },
-                    { 2, 100, "Samsung Discount", "Samsung 10" }
+                    { 1, 10.0, "IPhone Discount", "IPhone X" },
+                    { 2, 20.0, "Samsung Discount", "Samsung 10" }
                 });
         }
 
