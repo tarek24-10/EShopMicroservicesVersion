@@ -42,7 +42,7 @@ namespace Ordering.Infrastructure.Data.Configurations
                 addressBuilder.Property(a => a.AddressLine).HasColumnName(nameof(Address.AddressLine)).HasMaxLength(200).IsRequired();
                 addressBuilder.Property(a => a.State).HasColumnName(nameof(Address.State)).HasMaxLength(100).IsRequired();
                 addressBuilder.Property(a => a.Country).HasColumnName(nameof(Address.Country)).HasMaxLength(100).IsRequired();
-                addressBuilder.Property(a => a.ZipCode).HasColumnName(nameof(Address.ZipCode)).HasMaxLength(3).IsRequired();
+                addressBuilder.Property(a => a.ZipCode).HasColumnName(nameof(Address.ZipCode)).HasMaxLength(5).IsRequired();
             });
 
             builder.ComplexProperty(o => o.BillingAddress, addressBuilder =>
@@ -53,7 +53,7 @@ namespace Ordering.Infrastructure.Data.Configurations
                 addressBuilder.Property(a => a.AddressLine).HasColumnName(nameof(Address.AddressLine)).HasMaxLength(200).IsRequired();
                 addressBuilder.Property(a => a.State).HasColumnName(nameof(Address.State)).HasMaxLength(100).IsRequired();
                 addressBuilder.Property(a => a.Country).HasColumnName(nameof(Address.Country)).HasMaxLength(100).IsRequired();
-                addressBuilder.Property(a => a.ZipCode).HasColumnName(nameof(Address.ZipCode)).HasMaxLength(3).IsRequired();
+                addressBuilder.Property(a => a.ZipCode).HasColumnName(nameof(Address.ZipCode)).HasMaxLength(5).IsRequired();
             });
 
             builder.ComplexProperty(o => o.Payment, paymentBuilder =>

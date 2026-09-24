@@ -59,7 +59,7 @@ namespace Ordering.Infrastructure.Data.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     State = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ZipCode = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
+                    ZipCode = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CVV = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
                     CardName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),

@@ -136,8 +136,8 @@ namespace Ordering.Infrastructure.Data.Migrations
                             b1.Property<string>("ZipCode")
                                 .IsRequired()
                                 .ValueGeneratedOnUpdateSometimes()
-                                .HasMaxLength(3)
-                                .HasColumnType("nvarchar(3)")
+                                .HasMaxLength(5)
+                                .HasColumnType("nvarchar(5)")
                                 .HasColumnName("ZipCode");
                         });
 
@@ -236,8 +236,8 @@ namespace Ordering.Infrastructure.Data.Migrations
                             b1.Property<string>("ZipCode")
                                 .IsRequired()
                                 .ValueGeneratedOnUpdateSometimes()
-                                .HasMaxLength(3)
-                                .HasColumnType("nvarchar(3)")
+                                .HasMaxLength(5)
+                                .HasColumnType("nvarchar(5)")
                                 .HasColumnName("ZipCode");
                         });
 

@@ -13,7 +13,7 @@ using Ordering.Infrastructure.Data;
 namespace Ordering.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260924222250_InitialCreate")]
+    [Migration("20260924234922_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -139,8 +139,8 @@ namespace Ordering.Infrastructure.Data.Migrations
                             b1.Property<string>("ZipCode")
                                 .IsRequired()
                                 .ValueGeneratedOnUpdateSometimes()
-                                .HasMaxLength(3)
-                                .HasColumnType("nvarchar(3)")
+                                .HasMaxLength(5)
+                                .HasColumnType("nvarchar(5)")
                                 .HasColumnName("ZipCode");
                         });
 
@@ -239,8 +239,8 @@ namespace Ordering.Infrastructure.Data.Migrations
                             b1.Property<string>("ZipCode")
                                 .IsRequired()
                                 .ValueGeneratedOnUpdateSometimes()
-                                .HasMaxLength(3)
-                                .HasColumnType("nvarchar(3)")
+                                .HasMaxLength(5)
+                                .HasColumnType("nvarchar(5)")
                                 .HasColumnName("ZipCode");
                         });
 

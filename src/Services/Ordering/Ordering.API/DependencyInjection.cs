@@ -22,7 +22,7 @@ namespace Ordering.Application
 
             services.AddExceptionHandler<CustomExceptionHandler>();
 
-            //services.AddHealthChecks().AddNpgSql(builder.Configuration.GetConnectionString("Database")!);
+            services.AddHealthChecks();// .AddNpgSql(builder.Configuration.GetConnectionString("Database")!);
 
             return services;
         }
