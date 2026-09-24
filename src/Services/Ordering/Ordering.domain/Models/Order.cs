@@ -11,5 +11,50 @@
         public Payment Payment { get; private set; } = default!;
         public OrderStatus Status { get; private set; } = OrderStatus.Pending;
         public decimal TotalPrice => _orderItems.Sum(item => item.Price * item.Quantity);
+
+        public static Order Create(OrderId id, CustomerId customerId, OrderName orderName
+            , Address shippingAddress, Address billingAddress, Payment payment)
+        {
+            var order = new Order
+            {
+                Id = id,
+                CustomerId = customerId,
+                OrderName = orderName,
+                ShippingAddress = shippingAddress,
+                BillingAddress = billingAddress,
+                Payment = payment,
+                Status = OrderStatus.Pending
+            };
+            order.AddDomainEvent(new OrderCreatedEvent(order));
+            return order;
+        }
+
+        public void Update(OrderName orderName, Address shippingAddress, Address billingAddress
+            , Payment payment, OrderStatus status)
+        {
+            OrderName = orderName;
+            ShippingAddress = shippingAddress;
+            BillingAddress = billingAddress;
+            Payment = payment;
+            Status = status;
+            AddDomainEvent(new OrderUpdatedEvent(this));
+        }
+
+        public void AddOrderItem(ProductId productId, decimal price, int quantity)
+        {
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
+            var orderItem = new OrderItem(Id, productId, quantity, price);
+            _orderItems.Add(orderItem);
+        }
+
+        public void RemoveOrderItem(ProductId productId)
+        {
+            var orderItem = _orderItems.FirstOrDefault(item => item.ProductId == productId);
+            if (orderItem != null)
+            {
+                _orderItems.Remove(orderItem);
+            }
+        }
     }
 }
