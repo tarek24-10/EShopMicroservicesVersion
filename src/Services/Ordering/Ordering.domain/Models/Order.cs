@@ -10,7 +10,10 @@
         public Address BillingAddress { get; private set; } = default!;
         public Payment Payment { get; private set; } = default!;
         public OrderStatus Status { get; private set; } = OrderStatus.Pending;
-        public decimal TotalPrice => _orderItems.Sum(item => item.Price * item.Quantity);
+        public decimal TotalPrice {
+            get => _orderItems.Sum(item => item.Price * item.Quantity);
+            set { }
+        }
 
         public static Order Create(OrderId id, CustomerId customerId, OrderName orderName
             , Address shippingAddress, Address billingAddress, Payment payment)
