@@ -9,5 +9,24 @@
         public string AddressLine { get; } = default!;
         public string State { get; } = default!;
         public string ZipCode { get; } = default!;
+        protected Address() { }
+        private Address(string firstName, string lastName, string emailAddress, string country
+            , string state, string addressLine, string zipCode)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            EmailAddress = emailAddress;
+            Country = country;
+            AddressLine = addressLine;
+            State = state;
+            ZipCode = zipCode;
+        }
+        public static Address Of(string firstName, string lastName, string emailAddress,
+            string country, string state, string addressLine, string zipCode)
+        {
+            ArgumentException.ThrowIfNullOrWhiteSpace(emailAddress);
+            ArgumentException.ThrowIfNullOrWhiteSpace(addressLine);
+            return new Address(firstName, lastName, emailAddress, country, state, addressLine, zipCode);
+        }
     }
 }
