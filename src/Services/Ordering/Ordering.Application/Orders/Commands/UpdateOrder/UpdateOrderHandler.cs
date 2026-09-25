@@ -6,7 +6,7 @@
         public async Task<UpdateOrderResult> Handle(UpdateOrderCommand command, CancellationToken cancellationToken)
         {
             var orderId = OrderId.Of(command.Order.Id);
-            var order = await dbContext.Orders.FindAsync([orderId], cancellationToken);
+            var order = await dbContext.Orders.Where(o => o.Id == orderId).Include(o => o.OrderItems).SingleOrDefaultAsync(cancellationToken);
             if (order is null)
             {
                 throw new OrderNotFoundException(command.Order.Id);
@@ -22,22 +22,22 @@
         private void UpdateOrderwithNewValues(Order order, OrderDto orderDto)
         {
             var shippingAddress = Address.Of(
-                orderDto.Shipping.FirstName,
-                orderDto.Shipping.LastName,
-                orderDto.Shipping.Email,
-                orderDto.Shipping.Country,
-                orderDto.Shipping.State,
-                orderDto.Shipping.AddressLine,
-                orderDto.Shipping.ZipCode);
+                orderDto.ShippingAddress.FirstName,
+                orderDto.ShippingAddress.LastName,
+                orderDto.ShippingAddress.EmailAddress,
+                orderDto.ShippingAddress.Country,
+                orderDto.ShippingAddress.State,
+                orderDto.ShippingAddress.AddressLine,
+                orderDto.ShippingAddress.ZipCode);
 
             var billingAddress = Address.Of(
-                orderDto.Billing.FirstName,
-                orderDto.Billing.LastName,
-                orderDto.Billing.Email,
-                orderDto.Billing.Country,
-                orderDto.Billing.State,
-                orderDto.Billing.AddressLine,
-                orderDto.Billing.ZipCode);
+                orderDto.BillingAddress.FirstName,
+                orderDto.BillingAddress.LastName,
+                orderDto.BillingAddress.EmailAddress,
+                orderDto.BillingAddress.Country,
+                orderDto.BillingAddress.State,
+                orderDto.BillingAddress.AddressLine,
+                orderDto.BillingAddress.ZipCode);
 
             var payment = Payment.Of(
                 orderDto.Payment.PaymentMethod,

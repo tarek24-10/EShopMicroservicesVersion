@@ -8,9 +8,31 @@
                     order.Id.Value,
                     order.CustomerId.Value,
                     order.OrderName.Value,
-                    order.ShippingAddress.Adapt<AddressDto>(),
-                    order.BillingAddress.Adapt<AddressDto>(),
-                    order.Payment.Adapt<PaymentDto>(),
+                    new AddressDto(
+                        order.ShippingAddress.FirstName,
+                        order.ShippingAddress.LastName,
+                        order.ShippingAddress.EmailAddress,
+                        order.ShippingAddress.Country,
+                        order.ShippingAddress.State,
+                        order.ShippingAddress.AddressLine,
+                        order.ShippingAddress.ZipCode
+                    ),
+                    new AddressDto(
+                        order.BillingAddress.FirstName,
+                        order.BillingAddress.LastName,
+                        order.BillingAddress.EmailAddress,
+                        order.BillingAddress.Country,
+                        order.BillingAddress.State,
+                        order.BillingAddress.AddressLine,
+                        order.BillingAddress.ZipCode
+                    ),
+                    new PaymentDto(
+                        order.Payment.PaymentMethod,
+                        order.Payment.CardNumber,
+                        order.Payment.CardName,
+                        order.Payment.Expiration,
+                        order.Payment.CVV
+                    ),
                     order.Status,
                     order.OrderItems.Select(oi => new OrderItemDto(
                         oi.Id.Value,

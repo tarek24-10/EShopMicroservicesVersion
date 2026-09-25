@@ -16,8 +16,8 @@
                 OrderId.Of(orderDto.Id),
                 CustomerId.Of(orderDto.CustomerId),
                 OrderName.Of(orderDto.OrderName),
-                Address.Of(orderDto.Shipping.FirstName, orderDto.Shipping.LastName, orderDto.Shipping.Email, orderDto.Shipping.Country, orderDto.Shipping.State, orderDto.Shipping.AddressLine, orderDto.Shipping.ZipCode),
-                Address.Of(orderDto.Billing.FirstName, orderDto.Billing.LastName, orderDto.Billing.Email, orderDto.Billing.Country, orderDto.Billing.State, orderDto.Billing.AddressLine, orderDto.Billing.ZipCode),
+                Address.Of(orderDto.ShippingAddress.FirstName, orderDto.ShippingAddress.LastName, orderDto.ShippingAddress.EmailAddress, orderDto.ShippingAddress.Country, orderDto.ShippingAddress.State, orderDto.ShippingAddress.AddressLine, orderDto.ShippingAddress.ZipCode),
+                Address.Of(orderDto.BillingAddress.FirstName, orderDto.BillingAddress.LastName, orderDto.BillingAddress.EmailAddress, orderDto.BillingAddress.Country, orderDto.BillingAddress.State, orderDto.BillingAddress.AddressLine, orderDto.BillingAddress.ZipCode),
                 Payment.Of(orderDto.Payment.PaymentMethod, orderDto.Payment.CardNumber, orderDto.Payment.CardName, orderDto.Payment.Expiration, orderDto.Payment.CVV)
             );
 
