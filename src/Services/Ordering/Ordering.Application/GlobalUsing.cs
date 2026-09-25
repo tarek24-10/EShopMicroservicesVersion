@@ -7,6 +7,10 @@ global using Ordering.Application.Exceptions;
 global using MediatR;
 global using Ordering.domain.Events;
 global using Microsoft.Extensions.Logging;
+global using Mapster;
+global using Microsoft.EntityFrameworkCore;
+
+
 
 
 
