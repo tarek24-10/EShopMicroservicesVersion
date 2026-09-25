@@ -11,7 +11,7 @@ namespace Ordering.Application.Orders.Queries.GetOrdersbyCustomer
                 .Include(o => o.OrderItems)
                 .AsNoTracking()
                 .Where(o => o.CustomerId == CustomerId.Of(query.CustomerId))
-                .OrderBy(o => o.OrderName.Value)
+                .OrderBy(o => o.OrderName)
                 .ToListAsync(cancellationToken);
 
             var orderDtos = orders.ProjectToOrderDto();

@@ -27,12 +27,13 @@ namespace Ordering.Infrastructure.Data.Configurations
                 .HasForeignKey(oi => oi.OrderId)
                 .IsRequired();
 
-            builder.ComplexProperty(o => o.OrderName, namebuilder => { 
-                namebuilder.Property(n => n.Value)
-                .HasColumnName(nameof(OrderName.Value))
+            builder.Property(o => o.OrderName)
+                .HasConversion(
+                    orderName => orderName.Value,
+                    value => OrderName.Of(value))
                 .HasMaxLength(100)
                 .IsRequired();
-            });
+
 
             builder.ComplexProperty(o => o.ShippingAddress, addressBuilder =>
             {

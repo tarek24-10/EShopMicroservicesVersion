@@ -11,7 +11,7 @@
                 .AsNoTracking()
                 .Skip(pageIndex * pageSize)
                 .Take(pageSize)
-                .OrderBy(o => o.OrderName.Value)
+                .OrderBy(o => o.OrderName)
                 .ToListAsync(cancellationToken);
 
             var count = await context.Orders.LongCountAsync(cancellationToken);

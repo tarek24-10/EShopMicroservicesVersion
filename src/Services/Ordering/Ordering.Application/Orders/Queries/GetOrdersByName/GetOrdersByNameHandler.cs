@@ -7,8 +7,8 @@
             var orders = await context.Orders
                 .Include(o => o.OrderItems)
                 .AsNoTracking()
-                .Where(o => o.OrderName.Value.Contains(query.OrderName))
-                .OrderBy(o => o.OrderName.Value)
+                .Where(o => o.OrderName == OrderName.Of(query.OrderName))
+                .OrderBy(o => o.OrderName)
                 .ToListAsync(cancellationToken);
 
             var orderDtos = orders.ProjectToOrderDto();
