@@ -8,7 +8,7 @@
                 .Include(o => o.OrderItems)
                 .AsNoTracking()
                 .Where(o => o.OrderName.Value.Contains(query.OrderName))
-                .OrderBy(o => o.OrderName)
+                .OrderBy(o => o.OrderName.Value)
                 .ToListAsync(cancellationToken);
 
             var orderDtos = orders.ProjectToOrderDto();
