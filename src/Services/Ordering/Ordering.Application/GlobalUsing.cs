@@ -9,6 +9,9 @@ global using Ordering.domain.Events;
 global using Microsoft.Extensions.Logging;
 global using Mapster;
 global using Microsoft.EntityFrameworkCore;
+global using Ordering.Application.Extensions;
+
+
 
 
 
