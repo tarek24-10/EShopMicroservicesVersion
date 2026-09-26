@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using BuildingBlocks.Messaging.MassTransit;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
+using Microsoft.FeatureManagement;
 
 namespace Ordering.Application
 {
@@ -21,6 +22,8 @@ namespace Ordering.Application
             });
 
             services.AddValidatorsFromAssembly(currentAssembly);
+
+            services.AddFeatureManagement();
 
             services.AddMessageBroker(configuration, Assembly.GetExecutingAssembly());
 
