@@ -1,12 +1,16 @@
 ﻿using BuldingBlocks.Behaviours;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using BuildingBlocks.Messaging.MassTransit;
+using Microsoft.Extensions.Configuration;
+using System.Reflection;
 
 namespace Ordering.Application
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services, 
+            IConfiguration configuration)
         {
             var currentAssembly = typeof(DependencyInjection).Assembly;
 
@@ -17,6 +21,8 @@ namespace Ordering.Application
             });
 
             services.AddValidatorsFromAssembly(currentAssembly);
+
+            services.AddMessageBroker(configuration, Assembly.GetExecutingAssembly());
 
             return services;
         }
