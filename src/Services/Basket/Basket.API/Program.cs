@@ -2,6 +2,7 @@ using BuldingBlocks.Exceptions.Handler;
 using Discount.Grpc.Protos;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using BuildingBlocks.Messaging.MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,6 +54,10 @@ ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
     ServerCertificateCustomValidationCallback = 
     HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
 });
+
+// Assynchronous Communication Services
+
+builder.Services.AddMessageBroker(builder.Configuration);
 
 // Cross-Cutting Services
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
