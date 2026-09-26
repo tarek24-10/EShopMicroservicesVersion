@@ -1,12 +1,14 @@
 ﻿using BuldingBlocks.Exceptions.Handler;
 using Carter;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 namespace Ordering.Application
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddApiServices(this IServiceCollection services)
+        public static IServiceCollection AddApiServices(this IServiceCollection services
+            , IConfiguration configuration)
         {
             var currentAssembly = typeof(Program).Assembly;
 
@@ -22,7 +24,7 @@ namespace Ordering.Application
 
             services.AddExceptionHandler<CustomExceptionHandler>();
 
-            services.AddHealthChecks();// .AddNpgSql(builder.Configuration.GetConnectionString("Database")!);
+            services.AddHealthChecks().AddSqlServer(configuration.GetConnectionString("Database")!);
 
             return services;
         }
@@ -35,7 +37,7 @@ namespace Ordering.Application
 
             app.UseHealthChecks("/health", new HealthCheckOptions()
             {
-                //ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
             });
 
             return app;
