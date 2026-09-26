@@ -11,7 +11,7 @@
                 .OrderBy(o => o.OrderName)
                 .ToListAsync(cancellationToken);
 
-            var orderDtos = orders.ProjectToOrderDto();
+            var orderDtos = orders.ProjectToOrderDtoList();
 
             return new GetOrdersByNameResult(orderDtos);
         }

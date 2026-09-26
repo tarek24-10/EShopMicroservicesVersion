@@ -14,7 +14,7 @@ namespace Ordering.Application.Orders.Queries.GetOrdersbyCustomer
                 .OrderBy(o => o.OrderName)
                 .ToListAsync(cancellationToken);
 
-            var orderDtos = orders.ProjectToOrderDto();
+            var orderDtos = orders.ProjectToOrderDtoList();
             return new GetOrdersByCustomerResult(orderDtos);
         }
     }

@@ -16,7 +16,7 @@
 
             var count = await context.Orders.LongCountAsync(cancellationToken);
 
-            var orderDtos = orders.ProjectToOrderDto();
+            var orderDtos = orders.ProjectToOrderDtoList();
             var result = new PaginatedResult<OrderDto>(pageIndex, pageSize, count, orderDtos);
             return new GetOrdersResult(result);
         }
