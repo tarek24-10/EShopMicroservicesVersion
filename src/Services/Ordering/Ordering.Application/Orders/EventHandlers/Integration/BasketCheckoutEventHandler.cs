@@ -28,8 +28,8 @@ namespace Ordering.Application.Orders.EventHandlers.Integration
             var orderDto = new OrderDto(orderId, message.CustomerId, message.UserName
                 , addressDto, addressDto, payementDto, OrderStatus.Pending,
                 [
-                    new OrderItemDto(orderId, Guid.NewGuid(), 2, 500),
-                    new OrderItemDto(orderId, Guid.NewGuid(), 1, 400)
+                    new OrderItemDto(orderId, new Guid("6ec1297b-ec0a-4aa1-be25-6726e3b51a27"), 2, 500),
+                    new OrderItemDto(orderId, new Guid("c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914"), 1, 400)
                 ]
                 );
             return new CreateOrderCommand(orderDto);
