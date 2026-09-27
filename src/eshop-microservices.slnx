@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/APIGateways/">
+    <Project Path="APIGateways/YarpAPIGateway/YarpAPIGateway.csproj" Id="1fed90e6-c7d9-45c2-b96b-e75265697902" />
+  </Folder>
   <Folder Name="/BuildingBlocks/">
     <Project Path="BuildingBlocks/BuildingBlocks.Messaging/BuildingBlocks.Messaging.csproj" Id="ad3ad47d-3182-493b-94c0-07c4ff1a5ad4" />
     <Project Path="BuildingBlocks/BuldingBlocks/BuldingBlocks.csproj" Id="51720923-0075-4ef3-8844-ef4428eefb7e" />
